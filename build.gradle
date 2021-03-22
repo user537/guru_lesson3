@@ -1,0 +1,35 @@
+// используется Java
+plugins {
+    id "java-library"
+}
+
+// Build automation tool
+repositories {
+    mavenCentral()
+}
+
+// authorization frameworks versions
+dependencies {
+    def selenideVersion = "5.19.0",
+        junitVersion = "5.7.1"
+
+    //подключение самих фреймворков
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+// unicode
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// используется LTS Java
+//sourseCompability = 11
+//targetCompability = 11
+
+// запуск тестов на Junit
+test {
+    useJUnitPlatform()
+}
